@@ -13,3 +13,6 @@ def GrapNeuronData():
     global data
     with open("data.json", "r") as json_file:
         data = json.load(json_file)
+    return data
+
+

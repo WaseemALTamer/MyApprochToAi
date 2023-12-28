@@ -1,5 +1,6 @@
-array = [1121156.3522569577, 1117114.7657798612, 1187545.2742204345, 1193341.2725404238, 1196527.1388831283, 1246158.64061918, 1207486.1928334327, 1174571.2977913478, 1211167.3546527745, 1191197.0948037282]
+import Evolver
+import MyData
 
-largest_number = max(array)
+Evolver.data = MyData.GrapNeuronData()
 
-print("The largest number in the array is:", largest_number)
+print(Evolver.GrapImage(0)[0])

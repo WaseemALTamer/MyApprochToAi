@@ -1,21 +1,30 @@
-from numba import jit, cuda
-import numpy as np
-from timeit import default_timer as timer   
-import main
-import time
+import Evolver
+import random
+import instatingNeuronsBW
+import ProcessStats
+import MyData
 
-def func():
-    main.timer = time.time()                      
-    main.function()
- 
-@jit(target_backend='cuda')                         
-def func2():
-    main.timer = time.time()
-    main.function()
+def instating_test():
+    ApexMutation = []
+    GenerationOutput = []
+    Evolver.data = instatingNeuronsBW.GenerateBaisWeight()
 
-if __name__=="__main__":
- 
-     
-    start = timer()
-    func2()
-    print("with GPU:", timer()-start)
+    for i in range(0,100):
+        
+        RawData = Evolver.TestEvolution(random.randint(0,69999))
+        output = [ProcessStats.LargestNum(RawData[0]),RawData[1]]
+
+        if output[0][1] == output[1]:
+            if ApexMutation != []:
+                if ApexMutation[0][0] < output[0][0]:
+                    ApexMutation = output
+                    GenerationOutput = Evolver.data
+            else:
+                ApexMutation = output
+                GenerationOutput = Evolver.data
+    print(ApexMutation)
+    return GenerationOutput
+
+
+MyData.data = instating_test()
+MyData.WriteNeuronData()
